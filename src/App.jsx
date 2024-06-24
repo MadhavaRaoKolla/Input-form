@@ -1,33 +1,53 @@
+import React from 'react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+
+  const [formData,setFromData] = useState({
+    firstName:'',
+    lastName:'',
+    email:'',
+    gender:'',
+    about:''
+  });
+
+  const [submittedData,setSubmittedData] = useState(null);
+
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+    setFromData({
+      ...formData,[name]:value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedData(formData);
+    console.log(submittedData);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        User information page
+      </header>
+      <main>
+        <form onSubmit={handleSubmit}>
+          <label>First Name</label>
+          <input type="text" name='firstName' value={formData.firstName} onChange={handleChange}/>
+          <label>Last Name</label>
+          <input type="text" name='lastName' value={formData.lastName} onChange={handleChange}/>
+          <label>Email</label>
+          <input type="email" name='email' value={formData.email} onChange={handleChange}/>
+          <label>Gender</label>
+          <input type="radio" name='gender' value='MALE' onChange={handleChange}/>Male
+          <input type="radio" name='gender' value='FEMAL' onChange={handleChange}/>Female
+          <label>About</label>
+          <textarea name="about" value={formData.about} onChange={handleChange}></textarea>
+          <input type="submit" />
+        </form>
+      </main>
     </>
   )
 }
