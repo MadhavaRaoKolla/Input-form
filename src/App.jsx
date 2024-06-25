@@ -1,55 +1,38 @@
-import React from 'react'
-import { useState } from 'react'
-
+import React, { useState,useEffect } from 'react';
+import './App.scss';
+import Form from './Form';
+import Item from './Item';
 
 const App = () => {
+  
+const [data, setData] = useState([]); 
 
-  const [formData,setFromData] = useState({
-    firstName:'',
-    lastName:'',
-    email:'',
-    gender:'',
-    about:''
-  });
+const addData = (newData) => {
+  setData([...data,newData]);
+}
 
-  const [submittedData,setSubmittedData] = useState(null);
+const handleDelete = (firstName) => {
+  const newData = data.filter(item =>  item.firstName !== firstName)
+  setData(newData);
+  // fetch(`http://localhost:7000/data/${firstName}`,{method: 'DELETE'});
+}
 
-  const handleChange = (e) => {
-    const {name,value} = e.target;
-    setFromData({
-      ...formData,[name]:value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmittedData(formData);
-    console.log(submittedData);
-  };
-
+useEffect( ()=> {
+  fetch('http://localhost:7000/data')
+  .then(res => { return res.json()})
+  .then(data => setData(data))
+  },[])
   return (
-    <>
+    <div className='container'>
       <header>
         User information page
       </header>
       <main>
-        <form onSubmit={handleSubmit}>
-          <label>First Name</label>
-          <input type="text" name='firstName' value={formData.firstName} onChange={handleChange}/>
-          <label>Last Name</label>
-          <input type="text" name='lastName' value={formData.lastName} onChange={handleChange}/>
-          <label>Email</label>
-          <input type="email" name='email' value={formData.email} onChange={handleChange}/>
-          <label>Gender</label>
-          <input type="radio" name='gender' value='MALE' onChange={handleChange}/>Male
-          <input type="radio" name='gender' value='FEMAL' onChange={handleChange}/>Female
-          <label>About</label>
-          <textarea name="about" value={formData.about} onChange={handleChange}></textarea>
-          <input type="submit" />
-        </form>
+        <Form addData={addData}/>
+        { data && <Item data={data} handleDelete={handleDelete}/>}
       </main>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
