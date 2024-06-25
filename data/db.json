@@ -1,18 +1,3 @@
 {
-  "data": [
-    {
-      "firstName": "madhav",
-      "lastName": "kolla",
-      "about": "nothing much here",
-      "id": "0f8c"
-    },
-    {
-      "id": "11ac",
-      "firstName": "mitch",
-      "lastName": "starc",
-      "email": "starc@gmail.com",
-      "gender": "MALE",
-      "about": "hi bro"
-    }
-  ]
+  "data": []
 }
