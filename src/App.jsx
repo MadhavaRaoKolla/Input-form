@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState,useEffect } from 'react';
+import './App.scss';
+import Form from './Form';
+import Item from './Item';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  
+const [data, setData] = useState([]); 
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const addData = (newData) => {
+  setData([...data,newData]);
 }
 
-export default App
+const handleDelete = (firstName) => {
+  const newData = data.filter(item =>  item.firstName !== firstName)
+  setData(newData);
+  // fetch(`http://localhost:7000/data/${firstName}`,{method: 'DELETE'});
+}
+
+useEffect( ()=> {
+  fetch('http://localhost:7000/data')
+  .then(res => { return res.json()})
+  .then(data => setData(data))
+  },[])
+  return (
+    <div className='container'>
+      <header>
+        User information page
+      </header>
+      <main>
+        <Form addData={addData}/>
+        { data && <Item data={data} handleDelete={handleDelete}/>}
+      </main>
+    </div>
+  );
+}
+
+export default App;
