@@ -1,6 +1,7 @@
 import React from "react";
+
 import "./App.scss";
-import Form from "./Components/Form/Form";
+import Form from "./Comopnents/Form/Form";
 
 const App = () => {
   return (

@@ -9,6 +9,7 @@ const Item = ({ data, handleDelete }) => {
           <p>First Name: {item.firstName}</p>
           <p>Last Name: {item.lastName}</p>
           <p>About: {item.about}</p>
+
           <button className="delete" onClick={() => handleDelete(item.id)}>
             Delete
           </button>
