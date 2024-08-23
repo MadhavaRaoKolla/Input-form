@@ -1,20 +1,3 @@
 {
-  "data": [
-    {
-      "id": "76e8",
-      "firstName": "Kolla",
-      "lastName": "Rao",
-      "email": "madhavaraokolla2@gmail.com",
-      "gender": "FEMALE",
-      "about": "adsf"
-    },
-    {
-      "id": "bf26",
-      "firstName": "adfadfa",
-      "lastName": "dad",
-      "email": "ab@gmail.com",
-      "gender": "FEMALE",
-      "about": "adfa"
-    }
-  ]
+  "data": []
 }
