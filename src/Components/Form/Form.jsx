@@ -13,6 +13,7 @@ const Form = () => {
   });
 
   useEffect(() => {
+    //PROMISE CHAINING
     // fetch("http://localhost:7000/data")
     //   .then((res) => res.json())
     //   .then((data) => setData(data))
@@ -30,6 +31,7 @@ const Form = () => {
     };
     Fetch();
 
+    //for this method made useeffect function as async which is not good practice
     // try {
     //   const response = await (await fetch("http://localhost:7000/data")).json();
     //   setData(response);
@@ -58,13 +60,19 @@ const Form = () => {
         throw new Error("Updating failed");
       }
 
+      //data will be rendering on the screen we have to update it
+      //either by adding response to data obj or by fetching latest data and appending to it
+
+      //appendint post data to it
       const newData = await response.json();
       // setData([...data, newData]);
-      
+
+      //fetching updated data and appending to it
       const newResponse = await (
         await fetch("http://localhost:7000/data")
       ).json();
       setData(newResponse);
+
       setFormData({
         firstName: "",
         lastName: "",
@@ -78,6 +86,7 @@ const Form = () => {
   };
 
   const handleDelete = async (id) => {
+    //promise chaining......
     // fetch(`http://localhost:7000/data/${id}`, {
     //   method: 'DELETE',
     //   headers: {
