@@ -18,19 +18,7 @@ const Form = () => {
     //   .then((res) => res.json())
     //   .then((data) => setData(data))
     //   .catch((err) => console.log(err));
-
-    const Fetch = async () => {
-      try {
-        const response = await (
-          await fetch("http://localhost:7000/data")
-        ).json();
-        setData(response);
-      } catch (error) {
-        console.log("error...", error);
-      }
-    };
     Fetch();
-
     //for this method made useeffect function as async which is not good practice
     // try {
     //   const response = await (await fetch("http://localhost:7000/data")).json();
@@ -47,6 +35,15 @@ const Form = () => {
     });
   };
 
+  const Fetch = async () => {
+    try {
+      const response = await (await fetch("http://localhost:7000/data")).json();
+      setData(response);
+    } catch (error) {
+      console.log("error...", error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -60,19 +57,19 @@ const Form = () => {
         throw new Error("Updating failed");
       }
 
-      //data will be rendering on the screen we have to update it
       //either by adding response to data obj or by fetching latest data and appending to it
 
-      //appendint post data to it
-      const newData = await response.json();
+      //appending post data to it
+      // const newData = await response.json();
       // setData([...data, newData]);
 
       //fetching updated data and appending to it
-      const newResponse = await (
-        await fetch("http://localhost:7000/data")
-      ).json();
-      setData(newResponse);
-
+      // const newResponse = await (
+      //   await fetch("http://localhost:7000/data")
+      // ).json();
+      // setData(newResponse);
+      
+      Fetch();
       setFormData({
         firstName: "",
         lastName: "",
@@ -108,8 +105,7 @@ const Form = () => {
       },
     });
     if (!response.ok) throw new Error("Updation Failed");
-    const newData = await (await fetch("http://localhost:7000/data")).json();
-    setData(newData);
+    Fetch();
   };
 
   return (

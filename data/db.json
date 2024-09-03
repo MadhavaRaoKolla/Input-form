@@ -1,3 +1,20 @@
 {
-  "data": []
+  "data": [
+    {
+      "id": "177c",
+      "firstName": "Kolla",
+      "lastName": "Rao",
+      "email": "madhavaraokolla2@gmail.com",
+      "gender": "FEMALE",
+      "about": "adfadfa"
+    },
+    {
+      "id": "cb81",
+      "firstName": "adfadf",
+      "lastName": "Kolla",
+      "email": "madhavaraokolla2@gmail.com",
+      "gender": "FEMALE",
+      "about": "fadfa"
+    }
+  ]
 }
