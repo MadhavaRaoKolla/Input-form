@@ -11,7 +11,7 @@ const Form = () => {
     gender: "",
     about: "",
   });
-
+  const [edit, setEdit] = useState(null);
   useEffect(() => {
     //PROMISE CHAINING
     // fetch("http://localhost:7000/data")
@@ -47,28 +47,32 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:7000/data", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      if (edit) {
+        const response = await fetch(`http://localhost:7000/data/${edit}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        if (!response.ok) {
+          throw new Error("failed to updated....");
+        }
+        setEdit(null);
+      } else {
+        const response = await fetch("http://localhost:7000/data", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
 
-      if (!response.ok) {
-        throw new Error("Updating failed");
+        if (!response.ok) {
+          throw new Error("Updating failed");
+        }
       }
-
-      //either by adding response to data obj or by fetching latest data and appending to it
 
       //appending post data to it
       // const newData = await response.json();
       // setData([...data, newData]);
 
-      //fetching updated data and appending to it
-      // const newResponse = await (
-      //   await fetch("http://localhost:7000/data")
-      // ).json();
-      // setData(newResponse);
-      
       Fetch();
       setFormData({
         firstName: "",
@@ -106,6 +110,24 @@ const Form = () => {
     });
     if (!response.ok) throw new Error("Updation Failed");
     Fetch();
+  };
+
+  const handleEdit = async (id) => {
+    setEdit(id);
+    try {
+      const data = await (
+        await fetch(`http://localhost:7000/data/${id}`)
+      ).json();
+      setFormData({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        gender: data.gender,
+        about: data.about,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -167,7 +189,9 @@ const Form = () => {
         ></textarea>
         <input type="submit" />
       </form>
-      {data && <Item data={data} handleDelete={handleDelete} />}
+      {data && (
+        <Item data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
+      )}
     </>
   );
 };
