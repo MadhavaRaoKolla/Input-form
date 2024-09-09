@@ -13,9 +13,9 @@ const Item = ({ data, handleDelete, handleEdit }) => {
             <button className="delete" onClick={() => handleDelete(item.id)}>
               Delete
             </button>
-            {/* <button className="delete" onClick={() => handleEdit(item.id)}>
+            <button className="delete" onClick={() => handleEdit(item.id)}>
               Update
-            </button> */}
+            </button>
           </div>
         </div>
       ))}

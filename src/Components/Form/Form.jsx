@@ -187,7 +187,9 @@ const Form = () => {
           onChange={handleChange}
           required
         ></textarea>
-        <input type="submit" />
+        <button type="submit" className="submit">
+          {edit ? "Update" : "Submit"}
+        </button>
       </form>
       {data && (
         <Item data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
