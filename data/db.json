@@ -7,6 +7,14 @@
       "gender": "MALE",
       "about": "editing new entry",
       "id": "cdf5"
+    },
+    {
+      "id": "4dad",
+      "firstName": "KOLLA",
+      "lastName": "RAO",
+      "email": "kolla20_ug@ee.nits.ac.in",
+      "gender": "FEMALE",
+      "about": "fadfa"
     }
   ]
 }
