@@ -1,20 +1,20 @@
 {
   "data": [
     {
-      "firstName": "new new ",
-      "lastName": "entry",
-      "email": "a@gmail.com",
-      "gender": "MALE",
-      "about": "editing new entry",
-      "id": "cdf5"
-    },
-    {
       "id": "4dad",
       "firstName": "KOLLA",
       "lastName": "RAO",
       "email": "kolla20_ug@ee.nits.ac.in",
       "gender": "FEMALE",
       "about": "fadfa"
+    },
+    {
+      "id": "d2f8",
+      "firstName": "KOLLA",
+      "lastName": "RAO",
+      "email": "kolla20_ug@ee.nits.ac.in",
+      "gender": "FEMALE",
+      "about": "afda"
     }
   ]
 }

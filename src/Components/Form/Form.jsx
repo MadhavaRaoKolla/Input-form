@@ -19,13 +19,6 @@ const Form = () => {
     //   .then((data) => setData(data))
     //   .catch((err) => console.log(err));
     Fetch();
-    //for this method made useeffect function as async which is not good practice
-    // try {
-    //   const response = await (await fetch("http://localhost:7000/data")).json();
-    //   setData(response);
-    // } catch (error) {
-    //   console.log("error...", error);
-    // }
   }, []);
 
   const handleChange = (e) => {
